@@ -16,46 +16,131 @@
         $('.blog-gird').masonry({
             itemSelector: '.grid-item', columnWidth: '.grid-sizer',
         });
+    });сократи код /*  ---------------------------------------------------
+  Template Name: Activitar
+  Description:  Activitar Fitness HTML Template
+  Author: Colorlib
+  Author URI: https://colorlib.com
+  Version: 1.0
+  Created: Colorlib
+---------------------------------------------------------  */
+
+'use strict';
+
+(function ($) {
+
+    /*------------------
+        Preloader
+    --------------------*/
+    $(window).on('load', function () {
+        $(".loader").fadeOut();
+        $("#preloder").delay(200).fadeOut("slow");
+
+        /*------------------
+            Gallery filter
+        --------------------*/
+        $('.gallery-controls ul li').on('click', function() {
+            $('.gallery-controls ul li').removeClass('active');
+            $(this).addClass('active');
+        });
+        if($('.gallery-filter').length > 0 ) {
+            var containerEl = document.querySelector('.gallery-filter');
+            var mixer = mixitup(containerEl);
+        }
+
+        $('.blog-gird').masonry({
+			itemSelector: '.grid-item',
+			columnWidth: '.grid-sizer',
+		});
+
     });
 
+    /*------------------
+        Background Set
+    --------------------*/
     $('.set-bg').each(function () {
-        $(this).css('background-image', 'url(' + $(this).data('setbg') + ')');
+        var bg = $(this).data('setbg');
+        $(this).css('background-image', 'url(' + bg + ')');
     });
 
+    /*------------------
+		Navigation
+	--------------------*/
     $(".mobile-menu").slicknav({
-        prependTo: '#mobile-menu-wrap', allowParentLinks: true
+        prependTo: '#mobile-menu-wrap',
+        allowParentLinks: true
     });
 
-    $(".header-section .nav-menu .mainmenu ul li").on('mouseenter', function() {
+    /*------------------
+		Menu Hover
+	--------------------*/
+    $(".header-section .nav-menu .mainmenu ul li").on('mousehover', function() {
         $(this).addClass('active');
-    }).on('mouseleave', function() {
+    });
+    $(".header-section .nav-menu .mainmenu ul li").on('mouseleave', function() {
         $('.header-section .nav-menu .mainmenu ul li').removeClass('active');
     });
 
+    /*------------------
+        Carousel Slider
+    --------------------*/
     $(".hero-items").owlCarousel({
-        loop: true, margin: 0, nav: true, items: 1,
-        dots: true, animateOut: 'fadeOut', animateIn: 'fadeIn',
+        loop: true,
+        margin: 0,
+        nav: true,
+        items: 1,
+        dots: true,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
         navText: ['<i class="arrow_carrot-left"></i>', '<i class="arrow_carrot-right"></i>'],
-        smartSpeed: 1200, autoHeight: false,
+        smartSpeed: 1200,
+        autoHeight: false,
     });
 
-    $(".testimonial-slider").owlCarousel({
-        loop: true, margin: 0, nav: false, items: 1,
-        dots: true, navText: ['<i class="arrow_carrot-left"></i>', '<i class="arrow_carrot-right"></i>'],
-        smartSpeed: 1200, autoHeight: false, autoplay: true,
+    /*------------------
+        Testimonial Slider
+    --------------------*/
+   $(".testimonial-slider").owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: false,
+        items: 1,
+        dots: true,
+        navText: ['<i class="arrow_carrot-left"></i>', '<i class="arrow_carrot-right"></i>'],
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: true,
+    });
+---*/
+    $('.video-popup').magnificPopup({
+        type: 'iframe'
     });
 
-    $('.video-popup').magnificPopup({ type: 'iframe' });
-    $('.image-popup').magnificPopup({ type: 'image' });
+    $('.image-popup').magnificPopup({
+        type: 'image'
+    });
+
     $('.show-result-select').niceSelect();
 
+    /*------------------
+       Timetable Filter
+    --------------------*/
     $('.timetable-controls ul li').on('click', function() {
         var tsfilter = $(this).data('tsfilter');
-        $('.timetable-controls ul li').removeClass('active').end().addClass('active');
-        $('.classtime-table').toggleClass('filtering', tsfilter !== 'all');
-
+        $('.timetable-controls ul li').removeClass('active');
+        $(this).addClass('active');
+        
+        if(tsfilter == 'all') {
+            $('.classtime-table').removeClass('filtering');
+            $('.ts-item').removeClass('show');
+        } else {
+            $('.classtime-table').addClass('filtering');
+        }
         $('.ts-item').each(function(){
-            $(this).toggleClass('show', $(this).data('tsmeta') === tsfilter);
+            $(this).removeClass('show');
+            if($(this).data('tsmeta') == tsfilter) {
+                $(this).addClass('show');
+            }
         });
     });
 
