@@ -1,4 +1,4 @@
- /*  ---------------------------------------------------
+/*  ---------------------------------------------------
   Template Name: Activitar
   Description:  Activitar Fitness HTML Template
   Author: Colorlib
@@ -129,10 +129,6 @@
             if($(this).data('tsmeta') == tsfilter) {
                 $(this).addClass('show');
             }
-        });
-    });
-
-})(jQuery);
         });
     });
 
