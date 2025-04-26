@@ -1,22 +1,4 @@
-'use strict';
-
-(function ($) {
-    $(window).on('load', function () {
-        $(".loader").fadeOut();
-        $("#preloder").delay(200).fadeOut("slow");
-
-        $('.gallery-controls ul li').on('click', function() {
-            $('.gallery-controls ul li').removeClass('active').end().addClass('active');
-        });
-
-        if ($('.gallery-filter').length) {
-            mixitup(document.querySelector('.gallery-filter'));
-        }
-
-        $('.blog-gird').masonry({
-            itemSelector: '.grid-item', columnWidth: '.grid-sizer',
-        });
-    });сократи код /*  ---------------------------------------------------
+ /*  ---------------------------------------------------
   Template Name: Activitar
   Description:  Activitar Fitness HTML Template
   Author: Colorlib
@@ -111,7 +93,10 @@
         autoHeight: false,
         autoplay: true,
     });
----*/
+
+    /*------------------
+        Magnific Popup
+    --------------------*/
     $('.video-popup').magnificPopup({
         type: 'iframe'
     });
@@ -120,6 +105,9 @@
         type: 'image'
     });
 
+    /*------------------
+        Magnific Popup
+    --------------------*/
     $('.show-result-select').niceSelect();
 
     /*------------------
@@ -141,6 +129,10 @@
             if($(this).data('tsmeta') == tsfilter) {
                 $(this).addClass('show');
             }
+        });
+    });
+
+})(jQuery);
         });
     });
 
