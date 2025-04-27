@@ -1,12 +1,3 @@
-/*  ---------------------------------------------------
-  Template Name: Activitar
-  Description:  Activitar Fitness HTML Template
-  Author: Colorlib
-  Author URI: https://colorlib.com
-  Version: 1.0
-  Created: Colorlib
----------------------------------------------------------  */
-
 'use strict';
 
 (function ($) {
@@ -18,23 +9,22 @@
         $(".loader").fadeOut();
         $("#preloder").delay(200).fadeOut("slow");
 
-        /*------------------
-            Gallery filter
-        --------------------*/
+        // Gallery filter
         $('.gallery-controls ul li').on('click', function() {
             $('.gallery-controls ul li').removeClass('active');
             $(this).addClass('active');
         });
-        if($('.gallery-filter').length > 0 ) {
+
+        if ($('.gallery-filter').length > 0) {
             var containerEl = document.querySelector('.gallery-filter');
             var mixer = mixitup(containerEl);
         }
 
+        // Masonry layout for blog grid
         $('.blog-gird').masonry({
-			itemSelector: '.grid-item',
-			columnWidth: '.grid-sizer',
-		});
-
+            itemSelector: '.grid-item',
+            columnWidth: '.grid-sizer',
+        });
     });
 
     /*------------------
@@ -46,25 +36,15 @@
     });
 
     /*------------------
-		Navigation
-	--------------------*/
+        Navigation
+    --------------------*/
     $(".mobile-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
     });
 
     /*------------------
-		Menu Hover
-	--------------------*/
-    $(".header-section .nav-menu .mainmenu ul li").on('mousehover', function() {
-        $(this).addClass('active');
-    });
-    $(".header-section .nav-menu .mainmenu ul li").on('mouseleave', function() {
-        $('.header-section .nav-menu .mainmenu ul li').removeClass('active');
-    });
-
-    /*------------------
-        Carousel Slider
+        Hero Slider
     --------------------*/
     $(".hero-items").owlCarousel({
         loop: true,
@@ -82,7 +62,7 @@
     /*------------------
         Testimonial Slider
     --------------------*/
-   $(".testimonial-slider").owlCarousel({
+    $(".testimonial-slider").owlCarousel({
         loop: true,
         margin: 0,
         nav: false,
@@ -106,30 +86,30 @@
     });
 
     /*------------------
-        Magnific Popup
+        Nice Select
     --------------------*/
     $('.show-result-select').niceSelect();
 
     /*------------------
-       Timetable Filter
+        Timetable Filter
     --------------------*/
     $('.timetable-controls ul li').on('click', function() {
         var tsfilter = $(this).data('tsfilter');
         $('.timetable-controls ul li').removeClass('active');
         $(this).addClass('active');
-        
-        if(tsfilter == 'all') {
+
+        if (tsfilter === 'all') {
             $('.classtime-table').removeClass('filtering');
             $('.ts-item').removeClass('show');
         } else {
             $('.classtime-table').addClass('filtering');
+            $('.ts-item').each(function() {
+                $(this).removeClass('show');
+                if ($(this).data('tsmeta') === tsfilter) {
+                    $(this).addClass('show');
+                }
+            });
         }
-        $('.ts-item').each(function(){
-            $(this).removeClass('show');
-            if($(this).data('tsmeta') == tsfilter) {
-                $(this).addClass('show');
-            }
-        });
     });
 
 })(jQuery);
